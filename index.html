@@ -1,0 +1,62 @@
+<!doctype html>
+<html class="dark scroll-smooth" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080a0f" />
+    <meta name="description" content="Omar Mohamed is an English tutor, educational content creator, and student building clearer lessons and kinder online study spaces." />
+    <meta property="og:title" content="OM. — English Tutor, Student & Creator" />
+    <meta property="og:description" content="English tutor, educational creator, and community builder in Warszawa." />
+    <meta property="og:type" content="website" />
+    <title>OM. — English Tutor, Student & Creator</title>
+
+    <!-- Google Fonts: Caveat + Instrument Serif + Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS v3 CDN with forms & container-queries -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+              serif: ['"Instrument Serif"', 'serif'],
+              handwriting: ['"Caveat"', 'cursive'],
+            },
+            colors: {
+              brand: {
+                dark: '#080a0f',
+                panel: '#0e111a',
+                card: '#121622',
+                border: '#1f2536',
+                accent: '#3b82f6',
+                accentLight: '#60a5fa',
+                cyan: '#38bdf8',
+              }
+            },
+            animation: {
+              'spin-slow': 'spin 16s linear infinite',
+              'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                '50%': { transform: 'translateY(-8px) rotate(1deg)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-brand-dark text-slate-200 font-sans antialiased overflow-x-hidden selection:bg-brand-accent selection:text-white min-h-screen relative bg-grid-glow">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

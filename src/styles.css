@@ -1,0 +1,222 @@
+/* ==========================================================================
+   Base & Custom Utility Classes
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --brand-dark: #080a0f;
+  --brand-panel: #0e111a;
+  --brand-card: #121622;
+  --brand-border: #1f2536;
+  --brand-accent: #3b82f6;
+  --brand-accent-light: #60a5fa;
+  --brand-cyan: #38bdf8;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-handwriting: "Caveat", cursive;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: var(--brand-dark);
+  color: #e2e8f0;
+  font-family: var(--font-sans);
+  position: relative;
+}
+
+/* Subtle background grid pattern & ambient glows */
+.bg-grid-glow {
+  background-image: 
+    radial-gradient(circle at 82% 24%, rgba(59, 130, 246, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 18% 70%, rgba(56, 189, 248, 0.06) 0%, transparent 50%),
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+}
+
+/* Glow utilities */
+.text-glow-blue {
+  text-shadow: 0 0 28px rgba(96, 165, 250, 0.65), 0 0 50px rgba(59, 130, 246, 0.4);
+}
+.shadow-glow-blue {
+  box-shadow: 0 0 35px -5px rgba(59, 130, 246, 0.55), 0 10px 25px -5px rgba(59, 130, 246, 0.35);
+}
+.shadow-card-3d {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* Animation utilities */
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 16s linear infinite;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.02); }
+}
+.animate-pulse-subtle {
+  animation: pulse-subtle 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Scroll Progress Bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2.5px;
+  background: linear-gradient(90deg, #3b82f6, #38bdf8);
+  z-index: 100;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+  transition: width 0.1s ease-out;
+}
+
+/* Toast Message */
+.toast-msg {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #121622;
+  color: #ffffff;
+  border: 1px solid #3b82f6;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(59, 130, 246, 0.3);
+  border-radius: 30px;
+  padding: 10px 22px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 150;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+.toast-msg.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================================================
+   Section Styling & Typography
+   ========================================================================== */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-handwriting {
+  font-family: var(--font-handwriting);
+}
+
+/* Marquee Banner */
+.marquee-container {
+  height: 46px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: #ffffff;
+  background: linear-gradient(90deg, #1d4ed8, #2563eb, #0284c7);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.25);
+  transform: rotate(-0.6deg) scale(1.01);
+  position: relative;
+  z-index: 10;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  animation: marquee-anim 30s linear infinite;
+}
+@keyframes marquee-anim {
+  to { transform: translateX(-50%); }
+}
+
+/* Timeline & Card interactions */
+.timeline-item {
+  transition: all 0.25s ease;
+}
+.timeline-item:hover {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(59, 130, 246, 0.4);
+  transform: translateX(4px);
+}
+
+.project-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(59, 130, 246, 0.3);
+}
+
+/* Skills track */
+.skill-bar {
+  transition: width 1s ease-in-out;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .left-rail-guide {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 70px;
+  }
+}
+
+/* ==========================================================================
+   Preloader Transitions
+   ========================================================================== */
+.preloader-overlay {
+  transition: transform 0.85s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.6s ease;
+  will-change: transform;
+}
+
+.preloader-exit {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.35s ease forwards;
+}
+
